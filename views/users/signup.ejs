@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landsum</title>
+    <%- include("../layouts/links.ejs") %>
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs') %>
+        <div class="container">
+            <div class="row justify-content-center mt-3">
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <%- include("../partials/flashAlert.ejs") %>
+                    <h3>Signup</h3>
+                    <form action="http://localhost:3000/signup" method="post" class="mb-3 mt-3">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" value="<%= formData.username || '' %>" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" name="email" class="form-control" value="<%= formData.email || '' %>" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" value="<%= formData.password || '' %>" required />
+                        </div>
+                        <div class="mb-3" style="display: flex;flex-direction: column;align-items: center;">
+                            <button class="btn btn-dark">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>

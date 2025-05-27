@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stayza</title>
+    <%- include("../layouts/links.ejs") %>
+  </head>
+
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="container">
+      <div
+        class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mt-3"
+      >
+        <% for(let listing of allListing){ %>
+        <div class="card col">
+          <a href="/listings/<%= listing._id %>"
+            ><img src="<%= listing.image.url %>" class="card-img-top" alt="..."
+          /></a>
+          <div class="card-body">
+            <p class="card-title"><%=listing.title%></p>
+            <p class="card-text">
+              ₹<%=listing.price.toLocaleString("en-IN")%>/ night
+            </p>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

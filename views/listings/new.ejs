@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stayza</title>
+    <%- include("../layouts/links.ejs") %>
+  </head>
+
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <div class="container">
+      <div class="row justify-content-center mt-3">
+        <div class="col-lg-8 col-md-10 col-sm-11">
+          <h3>Create a New Listing</h3>
+          <form
+            action="http://localhost:3000/listings"
+            method="post"
+            class="mb-3"
+            enctype="multipart/form-data"
+          >
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" name="listing[title]" class="form-control" required/>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                name="listing[description]"
+                rows="3"
+                cols="20"
+                class="form-control"
+              ></textarea>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">Price</label>
+                <input
+                  type="number"
+                  name="listing[price]"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <div class="mb-3 col-md-8">
+                <label for="country" class="form-label">Country</label>
+                <input
+                  type="text"
+                  name="listing[country]"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input
+                type="text"
+                name="listing[location]"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Upload Image</label>
+              <input type="file" name="listing[image]" class="form-control"  required/>
+              <!-- <input type="text" name="listing[image]" class="form-control"  /> -->
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-dark">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <%- include('../partials/footer.ejs') %>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
