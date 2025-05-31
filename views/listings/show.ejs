@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stayza</title>
+    <%- include("../layouts/links.ejs") %>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stayza</title>
-  <%- include("../layouts/links.ejs") %>
-</head>
-
-<body>
-  <%- include('../partials/navbar.ejs') %>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10 mt-3">
@@ -20,21 +19,20 @@
             <span><%= listing.owner.username %></span>
           </div>
           <div class="card mb-0">
-            <img src="<%= listing.image.url %>" class="card-img-top" alt="Error fetching" />
+            <img
+              src="<%= listing.image.url %>"
+              class="card-img-top"
+              alt="Error fetching"
+            />
             <div class="card-body">
               <div class="card-title">
-                <h4>
-                  <%= listing.title %>
-                </h4>
+                <h4><%= listing.title %></h4>
               </div>
               <div class="card-text">
                 <table class="show-table">
                   <tr>
-                    <td style="width: min(100px);">Description :
-                    </td>
-                    <td>
-                      <%= listing.description %>
-                    </td>
+                    <td style="width: min(100px)">Description :</td>
+                    <td><%= listing.description %></td>
                   </tr>
                   <tr>
                     <td>Price :</td>
@@ -42,15 +40,11 @@
                   </tr>
                   <tr>
                     <td>Location :</td>
-                    <td>
-                      <%= listing.location %>
-                    </td>
+                    <td><%= listing.location %></td>
                   </tr>
                   <tr>
                     <td>Country :</td>
-                    <td>
-                      <%= listing.country %>
-                    </td>
+                    <td><%= listing.country %></td>
                   </tr>
                 </table>
               </div>
@@ -58,8 +52,15 @@
           </div>
           <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
           <div class="edt-remv-btn mb-0">
-            <a href="http://localhost:3000/listings/<%= listing._id %>/edit" class="btn btn-primary mb-2">Edit</a>
-            <form action="http://localhost:3000/listings/<%= listing._id %>?_method=delete" method="post">
+            <a
+              href="/listings/<%= listing._id %>/edit"
+              class="btn btn-primary mb-2"
+              >Edit</a
+            >
+            <form
+              action="/listings/<%= listing._id %>?_method=delete"
+              method="post"
+            >
               <button class="btn btn-danger mb-2">Remove Listing</button>
             </form>
           </div>
@@ -67,89 +68,121 @@
         </div>
       </div>
 
-
-      <div class="row justify-content-center ">
+      <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-          <hr>
+          <hr />
           <h5>Leave a Review</h5>
           <form action="/listings/<%= listing._id %>/reviews" method="post">
             <div class="rating-section mb-2">
-              <span style="margin-right: 10px;">Rating</span>
+              <span style="margin-right: 10px">Rating</span>
               <!-- <input type="range" name="review[rating]" min="1" max="5" value="1" /> -->
               <div class="rating">
-                <input value="5" name="review[rating]" id="star5" type="radio">
+                <input
+                  value="5"
+                  name="review[rating]"
+                  id="star5"
+                  type="radio"
+                />
                 <label for="star5"></label>
-                <input value="4" name="review[rating]" id="star4" type="radio">
+                <input
+                  value="4"
+                  name="review[rating]"
+                  id="star4"
+                  type="radio"
+                />
                 <label for="star4"></label>
-                <input value="3" name="review[rating]" id="star3" type="radio">
+                <input
+                  value="3"
+                  name="review[rating]"
+                  id="star3"
+                  type="radio"
+                />
                 <label for="star3"></label>
-                <input value="2" name="review[rating]" id="star2" type="radio">
+                <input
+                  value="2"
+                  name="review[rating]"
+                  id="star2"
+                  type="radio"
+                />
                 <label for="star2"></label>
-                <input value="1" name="review[rating]" id="star1" type="radio">
+                <input
+                  value="1"
+                  name="review[rating]"
+                  id="star1"
+                  type="radio"
+                />
                 <label for="star1"></label>
               </div>
-
             </div>
             <div class="mb-3">
-              <textarea name="review[comment]" class="form-control" rows="2" cols="10"
-                placeholder="Write a review..."></textarea>
+              <textarea
+                name="review[comment]"
+                class="form-control"
+                rows="2"
+                cols="10"
+                placeholder="Write a review..."
+              ></textarea>
             </div>
             <button class="btn btn-outline-dark mb-2">Submit</button>
           </form>
         </div>
       </div>
 
-      <div class="row justify-content-center ">
+      <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-          <hr>
+          <hr />
           <div class="mb-3">
             <% if(listing.reviews.length) { %>
-              <h3>Reviews</h3>
-              <% }else {%>
-                <h3>No Reviews</h3>
-                <% } %>
+            <h3>Reviews</h3>
+            <% }else {%>
+            <h3>No Reviews</h3>
+            <% } %>
           </div>
           <div class="row">
             <% for(let review of listing.reviews){ %>
-              <div class="indi-review col-lg-6 col-md-6 col-sm-12 mt-1">
-                <div class="user-photo-name">
-                  <div class="user-photo">
-                    <i class="fa-regular fa-user"></i>
-                  </div>
-                  <span><%= review.author.username %></span>
+            <div class="indi-review col-lg-6 col-md-6 col-sm-12 mt-1">
+              <div class="user-photo-name">
+                <div class="user-photo">
+                  <i class="fa-regular fa-user"></i>
                 </div>
-                <div class="static-rating">
-                    <div class="star-rating">
-                      <% for(let i = 1; i <= 5; i++) { %>
-                        <% if(i <= review.rating) { %>
-                          <span class="star filled">&#9733;</span>
-                        <% } else { %>
-                          <span class="star">&#9733;</span>
-                        <% } %>
-                      <% } %>
-                    </div>
-                  <span style="font-size: 0.65rem;">
-                    <%= review.createdAt.toString().split(" ").slice(1,4).join(" ") %> </span>
-                </div>
-                <p class="review-comment"><%= review.comment %></p>
-                <% if(currUser && review.author._id.equals(currUser._id)){ %>
-                  <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete" method="post">
-                    <button class="btn btn-dark mb-3"> Delete </button>
-                  </form>
-                <% } %>
+                <span><%= review.author.username %></span>
               </div>
+              <div class="static-rating">
+                <div class="star-rating">
+                  <% for(let i = 1; i <= 5; i++) { %> <% if(i <= review.rating)
+                  { %>
+                  <span class="star filled">&#9733;</span>
+                  <% } else { %>
+                  <span class="star">&#9733;</span>
+                  <% } %> <% } %>
+                </div>
+                <span style="font-size: 0.65rem">
+                  <%= review.createdAt.toString().split(" ").slice(1,4).join("
+                  ") %>
+                </span>
+              </div>
+              <p class="review-comment"><%= review.comment %></p>
+              <% if(currUser && review.author._id.equals(currUser._id)){ %>
+              <form
+                action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete"
+                method="post"
+              >
+                <button class="btn btn-dark mb-3">Delete</button>
+              </form>
+              <% } %>
+            </div>
             <% } %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
     <%- include('../partials/footer.ejs') %>
 
-      <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                      crossorigin="anonymous">
-                      </script>
-</body>
-
+    <script
+      src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

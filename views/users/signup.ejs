@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landsum</title>
+    <title>Stayza</title>
     <%- include("../layouts/links.ejs") %>
 </head>
 
@@ -15,7 +15,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <%- include("../partials/flashAlert.ejs") %>
                     <h3>Signup</h3>
-                    <form action="http://localhost:3000/signup" method="post" class="mb-3 mt-3">
+                    <form action="/signup" method="post" class="mb-3 mt-3">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" name="username" class="form-control" value="<%= formData.username || '' %>" required />

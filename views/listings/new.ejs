@@ -14,14 +14,19 @@
         <div class="col-lg-8 col-md-10 col-sm-11">
           <h3>Create a New Listing</h3>
           <form
-            action="http://localhost:3000/listings"
+            action="/listings"
             method="post"
             class="mb-3"
             enctype="multipart/form-data"
           >
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
-              <input type="text" name="listing[title]" class="form-control" required/>
+              <input
+                type="text"
+                name="listing[title]"
+                class="form-control"
+                required
+              />
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Description</label>
@@ -64,7 +69,12 @@
             </div>
             <div class="mb-3">
               <label for="image" class="form-label">Upload Image</label>
-              <input type="file" name="listing[image]" class="form-control"  required/>
+              <input
+                type="file"
+                name="listing[image]"
+                class="form-control"
+                required
+              />
               <!-- <input type="text" name="listing[image]" class="form-control"  /> -->
             </div>
             <div class="mb-3">
@@ -74,7 +84,7 @@
         </div>
       </div>
     </div>
-    
+
     <%- include('../partials/footer.ejs') %>
 
     <script

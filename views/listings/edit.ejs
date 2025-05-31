@@ -13,8 +13,9 @@
         <div class="col-lg-8 col-md-10 col-sm-11">
           <h3>Edit Listing</h3>
           <form
-            action="http://localhost:3000/listings/<%= listing._id %>?_method=put"
-            method="post" enctype="multipart/form-data"
+            action="/listings/<%= listing._id %>?_method=put"
+            method="post"
+            enctype="multipart/form-data"
           >
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
@@ -33,7 +34,8 @@
                 rows="3"
                 cols="30"
                 class="form-control"
-              ><%= listing.description %></textarea
+              >
+<%= listing.description %></textarea
               >
             </div>
             <div class="row">
@@ -71,11 +73,7 @@
 
             <div class="mb-3">
               <label for="image" class="form-label">Upload New Image</label>
-              <input
-                type="file"
-                name="listing[image]"
-                class="form-control"
-              />
+              <input type="file" name="listing[image]" class="form-control" />
             </div>
 
             <button class="btn btn-dark mb-3">Submit</button>
