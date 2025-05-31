@@ -1,5 +1,5 @@
-if(process.env.NODE_ENV != "production"){
-  require('dotenv').config()
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
 }
 const port = process.env.PORT;
 const express = require("express");
@@ -11,8 +11,8 @@ const CustomError = require("./utils/customError.js");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("./models/user.js")
-const flash = require("connect-flash")
+const User = require("./models/user.js");
+const flash = require("connect-flash");
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -50,10 +50,10 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/landsum");
-};
+  await mongoose.connect(process.env.MONGODB_URI);
+}
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
