@@ -118,12 +118,17 @@
                   </div>
                   <span><%= review.author.username %></span>
                 </div>
-                <div>
-                  <span><b>
-                      <%= review.rating %> star
-                    </b></span>
-                  &nbsp;
-                  <span>
+                <div class="static-rating">
+                    <div class="star-rating">
+                      <% for(let i = 1; i <= 5; i++) { %>
+                        <% if(i <= review.rating) { %>
+                          <span class="star filled">&#9733;</span>
+                        <% } else { %>
+                          <span class="star">&#9733;</span>
+                        <% } %>
+                      <% } %>
+                    </div>
+                  <span style="font-size: 0.65rem;">
                     <%= review.createdAt.toString().split(" ").slice(1,4).join(" ") %> </span>
                 </div>
                 <p class="review-comment"><%= review.comment %></p>
