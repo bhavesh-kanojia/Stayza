@@ -16,7 +16,7 @@ const initDB = () => {
     .catch((err) => console.log(err));
   initData.data = initData.data.map((obj) => ({
     ...obj,
-    owner: "67bdcdee31a8ff980bf122bb",
+    owner: "683c9d9dd160780e738b469e",
   }));
   Listing.insertMany(initData.data)
     .then((res) => console.log("Database is Initialized"))
