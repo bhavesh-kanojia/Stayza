@@ -9,6 +9,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const CustomError = require("./utils/customError.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
@@ -29,10 +30,15 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      touchAfter: 24 * 60 * 60,
+      ttl: 2 * 24 * 60 * 60,
+      autoRemove: 'native',
+    }),
     cookie: {
-      expires: Date.now() + 60 * 60 * 1000,
-      maxAge: 60 * 60 * 1000,
+      maxAge: 2 * 24 * 60 * 60 * 1000,
       httpOnly: true,
     },
   })
